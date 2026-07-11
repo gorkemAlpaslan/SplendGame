@@ -18,7 +18,7 @@ import {
   type User,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { firebaseAuth, db, isFirebaseEnabled } from "./firebase";
+import { firebaseAuth, db, isFirebaseEnabled, initializeFirebase, type FirebaseConfig } from "./firebase";
 
 export interface Profile {
   uid: string | null; // null => guest
@@ -46,7 +46,15 @@ function defaultGuestName() {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({
+  firebaseConfig,
+  children,
+}: {
+  firebaseConfig: FirebaseConfig;
+  children: ReactNode;
+}) {
+  initializeFirebase(firebaseConfig);
+  
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(isFirebaseEnabled);
   const [guestName, setGuestNameState] = useState(() => {

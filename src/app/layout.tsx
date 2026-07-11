@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/lib/auth-context";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import type { FirebaseConfig } from "@/lib/firebase";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -30,10 +31,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read from server-side env vars (no NEXT_PUBLIC_ — never exposed to the browser bundle)
+  const firebaseConfig: FirebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+  };
+
   return (
     <html lang="tr" className={`${outfit.variable} h-full antialiased`}>
       <body className="min-h-dvh flex flex-col font-sans">
-        <AuthProvider>
+        <AuthProvider firebaseConfig={firebaseConfig}>
           <Navbar />
           <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6">
             {children}
