@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #070b13;
+  --color-surface: #0e1424;
+  --color-surface-2: #161e33;
+  --color-edge: #232f4e;
+  --color-ink: #f1f3f9;
+  --color-muted: #8896b7;
+  --color-primary: #7c3aed;
+  --color-primary-soft: #a78bfa;
+  --color-secondary: #db2777;
+  --color-accent: #d97706;
+  --color-good: #10b981;
+  --color-bad: #ef4444;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 15% -15%, rgba(124, 58, 237, 0.08), transparent 60%),
+    radial-gradient(1000px 500px at 85% -15%, rgba(219, 39, 119, 0.06), transparent 60%),
+    var(--color-bg);
+  color: var(--color-ink);
+  min-height: 100dvh;
+}
+
+@layer components {
+  .card {
+    @apply bg-surface/50 backdrop-blur-md border border-edge/30 rounded-2xl shadow-lg shadow-black/15 transition-all duration-300;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer select-none;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer select-none bg-primary hover:bg-primary/90 text-white px-5 py-2.5 shadow-md shadow-primary/10 hover:shadow-lg hover:shadow-primary/20 border border-primary-soft/10;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer select-none bg-surface-2/40 backdrop-blur-sm hover:bg-edge/40 text-ink px-5 py-2.5 border border-edge/20 hover:border-edge/40;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer select-none bg-bad/10 hover:bg-bad/15 text-bad px-5 py-2.5 border border-bad/20 hover:border-bad/30;
+  }
+  .input {
+    @apply w-full rounded-xl bg-surface-2/30 border border-edge/20 px-4 py-2.5 text-ink placeholder:text-muted/40 outline-none focus:border-primary/45 focus:ring-1 focus:ring-primary/10 transition-all duration-200;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold cursor-pointer select-none transition-all duration-200 border border-edge/10 hover:border-edge/30;
+  }
+  .title-gradient {
+    background: linear-gradient(135deg, #c084fc 0%, #db2777 50%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* subtle scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-edge) transparent;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.97); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop {
+  animation: pop-in 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes float-up {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-rise {
+  animation: float-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes shake-x {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.animate-shake {
+  animation: shake-x 0.2s ease-in-out;
+}
+
+/* prevent long-press / double-tap zoom weirdness inside game boards */
+.game-board {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
