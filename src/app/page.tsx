@@ -41,7 +41,7 @@ export default function HomePage() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-muted text-base sm:text-lg mt-4 max-w-xl mx-auto leading-relaxed"
         >
-          Zekanı zorlayan bulmacalar, arkadaşlarınla kapışabileceğin çok oyunculu düellolar ve global skor tabloları hepsi tek bir adreste.
+          30&apos;dan fazla bulmaca ve gerçek zamanlı düello oyunu. Kayıt ol, oyna, skorunu dünyayla yarıştır.
         </motion.p>
 
         <motion.div
@@ -85,12 +85,12 @@ export default function HomePage() {
       {/* Featured Games */}
       <section className="space-y-6">
         <div className="flex items-end justify-between border-b border-edge/10 pb-3">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary-soft" />
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-ink">Öne Çıkan Oyunlar</h2>
+          <div>
+            <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-primary-soft">Öne Çıkanlar</div>
+            <h2 className="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-ink">Popüler Oyunlar</h2>
           </div>
-          <Link href="/oyunlar" className="text-primary-soft font-bold text-xs hover:text-primary transition-colors flex items-center gap-1">
-            Tümünü gör <ArrowRight className="w-3.5 h-3.5" />
+          <Link href="/oyunlar" className="text-primary-soft font-bold text-xs hover:text-primary transition-colors flex items-center gap-1 shrink-0">
+            Tümünü Gör <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -104,12 +104,14 @@ export default function HomePage() {
       {/* Multiplayer Duel Arena */}
       <section className="space-y-6">
         <div className="flex items-end justify-between border-b border-edge/10 pb-3">
-          <div className="flex items-center gap-2">
-            <Swords className="w-5 h-5 text-secondary" />
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-ink">Arkadaşınla Düello Yap</h2>
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-secondary">
+              <Swords className="w-3.5 h-3.5" /> Çok Oyunculu
+            </div>
+            <h2 className="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-ink">Düello Arenası</h2>
           </div>
-          <Link href="/oyunlar?mod=multi" className="text-primary-soft font-bold text-xs hover:text-primary transition-colors flex items-center gap-1">
-            Çok Oyunculu Oyunlar <ArrowRight className="w-3.5 h-3.5" />
+          <Link href="/oyunlar?mod=multi" className="text-secondary font-bold text-xs hover:text-secondary/80 transition-colors flex items-center gap-1 shrink-0">
+            Tümünü Gör <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -121,17 +123,23 @@ export default function HomePage() {
       </section>
 
       {/* CTA Registration Banner */}
-      <section className="card p-8 sm:p-12 text-center relative overflow-hidden border border-edge/30">
-        <div className="absolute inset-0 opacity-10 bg-gradient-to-r from-primary via-secondary to-accent pointer-events-none" />
-        
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-ink relative tracking-tight">Skorun dünyaya duyulsun!</h2>
-        <p className="text-muted/80 mt-3 relative max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-          Kayıt olmadan hemen tarayıcından oynayabilirsin. Ücretsiz üye olarak online maçlara katıl, skorlarını bulutta eşleştir ve sıralamada zirveye oyna!
-        </p>
-        
-        <div className="mt-8 relative">
-          <Link href="/profil" className="btn-primary !px-8 !py-3 text-sm flex-inline">
-            Ücretsiz Hesap Aç
+      <section className="relative overflow-hidden rounded-3xl border border-primary/40 p-8 sm:p-12">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(120deg, rgba(124,58,237,0.22) 0%, rgba(219,39,119,0.18) 55%, rgba(217,119,6,0.12) 100%), var(--color-surface)",
+          }}
+        />
+        <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <h2 className="text-2xl sm:text-4xl font-black text-ink tracking-tight">Skorun dünyaya duyulsun!</h2>
+            <p className="text-muted mt-3 max-w-xl text-sm sm:text-base leading-relaxed">
+              Ücretsiz hesabını oluştur; skorların kaydedilsin, sıralamada yüksel, arkadaşlarınla düello yap.
+            </p>
+          </div>
+          <Link href="/profil" className="btn-primary shrink-0 !px-8 !py-4 text-base flex items-center gap-2">
+            Ücretsiz Kayıt Ol <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

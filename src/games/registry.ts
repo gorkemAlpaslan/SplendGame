@@ -30,6 +30,23 @@ export const CATEGORY_LABELS: Record<GameCategory, string> = {
   strateji: "Strateji",
 };
 
+// Accent color per category — mirrors the Splend Game Portal design palette.
+export const CATEGORY_COLORS: Record<GameCategory, string> = {
+  sayı: "#a78bfa",
+  mantık: "#7c3aed",
+  kelime: "#c084fc",
+  hafıza: "#f59e0b",
+  refleks: "#10b981",
+  strateji: "#db2777",
+};
+
+// Difficulty label + color (1 Kolay / 2 Orta / 3 Zor).
+export const DIFFICULTY_META: Record<1 | 2 | 3, { label: string; color: string }> = {
+  1: { label: "Kolay", color: "#10b981" },
+  2: { label: "Orta", color: "#f59e0b" },
+  3: { label: "Zor", color: "#ef4444" },
+};
+
 export const GAMES: GameMeta[] = [
   // ---------- TEK KİŞİLİK (20) ----------
   {

@@ -42,9 +42,9 @@ export default function GamesBrowser() {
   return (
     <div className="animate-rise space-y-6">
       <div>
-        <h1 className="text-3xl font-extrabold mb-1 tracking-tight text-ink">Oyunlar</h1>
-        <p className="text-muted text-sm">
-          {GAMES.length} zeka bulmacası seni bekliyor — hemen oyna ve zihnini zorla!
+        <h1 className="text-3xl sm:text-4xl font-black mb-1 tracking-tight text-ink">Oyunlar</h1>
+        <p className="text-muted text-base">
+          {GAMES.length} oyun — bulmacadan gerçek zamanlı düellolara.
         </p>
       </div>
 
@@ -111,6 +111,11 @@ export default function GamesBrowser() {
             {CATEGORY_LABELS[c]}
           </button>
         ))}
+      </div>
+
+      {/* Result count */}
+      <div className="text-sm text-muted">
+        <span className="font-bold text-ink">{filtered.length}</span> oyun bulundu
       </div>
 
       {/* Grid List */}
